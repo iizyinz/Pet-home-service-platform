@@ -1,0 +1,56 @@
+/**
+ * 主题变量：温暖宠物风（与《色彩搭配方案》一一对应）
+ * 仅作为 SCSS 编译期变量；运行期颜色统一使用 App.vue 中的 CSS 变量 --c-*。
+ */
+
+/* 品牌色 */
+$color-primary: #FF8A3D;   // 主色 暖橙
+$color-success: #4ECB71;   // 辅色 活力绿 / 成功
+$color-info: #5B7FFF;      // 强调色 信任蓝 / 进行中
+$color-warning: #FFB020;   // 警告 待支付、待接单
+$color-error: #FF4D4F;     // 错误 / 未读
+$color-disabled: #BFBFBF;  // 禁用
+
+/* 背景与文字 */
+$color-bg-page: #F7F8FA;
+$color-bg-card: #FFFFFF;
+$color-text-title: #1A1A1A;
+$color-text-secondary: #666666;
+$color-text-weak: #999999;
+$color-border: #EBEDF0;
+$color-input-border: #DCDEE0;
+$color-placeholder: #C0C4CC;
+$color-primary-weak: #FFF3EC; // 主色浅底（标签背景）
+
+/* 圆角与阴影 */
+$radius-card: 24rpx;   // 卡片 12px
+$radius-btn: 24rpx;    // 按钮/输入框 12px
+$radius-tag: 12rpx;    // 标签 6px
+$shadow-card: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+/* uni-app 内置变量（兼容插件） */
+$uni-color-primary: #FF8A3D;
+$uni-color-success: #4ECB71;
+$uni-color-warning: #FFB020;
+$uni-color-error: #FF4D4F;
+
+$uni-text-color: #1A1A1A;
+$uni-text-color-inverse: #FFFFFF;
+$uni-text-color-grey: #999999;
+$uni-text-color-placeholder: #C0C4CC;
+$uni-text-color-disable: #BFBFBF;
+
+$uni-bg-color: #FFFFFF;
+$uni-bg-color-grey: #F7F8FA;
+$uni-bg-color-hover: #F1F2F5;
+$uni-bg-color-mask: rgba(0, 0, 0, 0.4);
+
+$uni-border-color: #EBEDF0;
+
+$uni-font-size-sm: 26rpx;
+$uni-font-size-base: 30rpx;
+$uni-font-size-lg: 36rpx;
+
+$uni-border-radius-sm: 12rpx;
+$uni-border-radius-base: 24rpx;
+$uni-border-radius-lg: 24rpx;

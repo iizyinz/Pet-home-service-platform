@@ -1,0 +1,30 @@
+# ================= 宠物上门服务 · 项目根 gitignore =================
+# 依赖与构建产物
+node_modules/
+dist/
+target/
+unpackage/
+coverage/
+
+# 本地运行产物：日志可能包含本机路径、账号、第三方域名等敏感信息，禁止提交
+logs/
+uploads/
+*.log
+*.pid
+npm-install.*
+npm-debug.log*
+
+# 本地环境变量与密钥（.env.example 除外）
+.env
+.env.*
+!.env.example
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.iml
+*.sw?
+
+# 系统文件
+.DS_Store
+Thumbs.db

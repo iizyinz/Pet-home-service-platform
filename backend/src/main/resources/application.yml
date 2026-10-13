@@ -1,0 +1,117 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: pet-home-service-backend
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/pet_service?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PWD:?MYSQL_PWD 未设置：请通过环境变量提供数据库密码}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      pool-name: pet-pool
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 20MB
+  jackson:
+    time-zone: GMT+8
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sort-alpha: true
+    doc-expansion: none
+
+# ================= 业务配置 =================
+app:
+  jwt:
+    # HS256 签名密钥：无默认值，必须通过环境变量 JWT_SECRET 注入（勿写入本文件）
+    secret: ${JWT_SECRET:?JWT_SECRET 未设置：请通过环境变量提供 JWT 签名密钥}
+    expire-hours: 720          # 30 天
+    issuer: pet-home-service
+  upload:
+    dir: ./uploads
+    url-prefix: /uploads
+    allowed-exts: jpg,jpeg,png,gif,webp
+  # 对象存储：Cloudflare R2（S3 兼容 API），密钥请用环境变量注入，勿提交仓库
+  r2:
+    account-id: ${R2_ACCOUNT_ID:}
+    endpoint: ${R2_ENDPOINT:}                    # 留空则按 https://{account-id}.r2.cloudflarestorage.com 推导
+    region: ${R2_REGION:auto}
+    bucket: ${R2_BUCKET:}
+    access-key: ${R2_ACCESS_KEY_ID:}
+    secret-key: ${R2_SECRET_ACCESS_KEY:}
+    public-base-url: ${R2_PUBLIC_BASE_URL:}      # 公开访问域名，如 https://pub-xxx.r2.dev（末尾不带 /）
+    key-prefix: ${R2_KEY_PREFIX:pet}             # 对象 Key 前缀：pet/yyyy/MM/dd/uuid.ext
+  order:
+    accept-timeout-hours: 24   # PENDING_CONFIRM 超时未接单自动取消
+    confirm-timeout-hours: 72  # PENDING_SETTLE 超时未确认自动完成
+  llm:
+    base-url: ${LLM_BASE_URL:https://api.deepseek.com}
+    api-key: ${LLM_API_KEY:}            # DeepSeek API Key，用环境变量 LLM_API_KEY 注入，勿写入仓库
+    model: ${LLM_MODEL:deepseek-flash}
+    connect-timeout-seconds: 5
+    read-timeout-seconds: 60
+  captcha:
+    ttl-seconds: 300
+
+logging:
+  file:
+    name: ./logs/pet-home-service.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    com.example.backend: info
+
+---
+# 开发环境：文档始终开启，打印 SQL
+spring:
+  config:
+    activate:
+      on-profile: dev
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+springdoc:
+  api-docs:
+    enabled: true
+
+---
+# 生产环境：默认关闭文档，需显式开启（SPRINGDOC_API_DOCS_ENABLED=true）
+spring:
+  config:
+    activate:
+      on-profile: prod
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+springdoc:
+  api-docs:
+    enabled: ${SPRINGDOC_API_DOCS_ENABLED:false}
+  swagger-ui:
+    enabled: ${SPRINGDOC_SWAGGER_UI_ENABLED:false}

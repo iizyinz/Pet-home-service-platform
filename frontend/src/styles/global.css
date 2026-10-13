@@ -1,0 +1,135 @@
+/* ===== 全局通用样式：统一间距/字号/色彩/交互 ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 页面容器：统一 16px 间距 */
+.page-container {
+  padding: 16px;
+}
+
+/* 卡片：白底 16px 圆角 阴影 */
+.card-panel {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* 模块标题 */
+.module-title {
+  font-size: var(--font-size-module);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 12px;
+}
+
+/* 辅助文字 */
+.aux-text {
+  font-size: var(--font-size-aux);
+  color: var(--color-text-muted);
+}
+
+/* 金额（价格） */
+.price-text {
+  font-size: var(--font-size-price);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.price-text-lg {
+  font-size: var(--font-size-price-lg);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* 业务标签（方案：圆角 6px、底 #FFF3EC、字 #FF8A3D） */
+.biz-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-tag);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: var(--font-size-aux);
+  line-height: 20px;
+}
+
+/* 主按钮（暖橙实心白字）——Element 走主题色，此处补充 hover 态统一 */
+.el-button--primary {
+  font-weight: 500;
+}
+
+/* 表单输入统一高度 44px / 圆角 12px */
+.el-input__wrapper,
+.el-select__wrapper {
+  --el-input-height: 44px;
+}
+
+.el-form-item__label {
+  color: var(--color-text-secondary);
+}
+
+/* 表格统一 */
+.el-table {
+  --el-table-header-bg-color: #fafbfc;
+  --el-table-header-text-color: var(--color-text-secondary);
+  --el-table-border-color: var(--color-border);
+  border-radius: 12px;
+}
+
+.el-table th.el-table__cell {
+  font-weight: 600;
+}
+
+/* 对话框圆角 16px */
+.el-dialog {
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.el-dialog__title {
+  font-size: var(--font-size-module);
+  font-weight: 600;
+}
+
+/* 未读红点 */
+.unread-dot {
+  display: inline-block;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--color-unread);
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* 页面加载遮罩高度自适应 */
+.full-loading {
+  min-height: 320px;
+}
+
+/* 滚动条（干净风格） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

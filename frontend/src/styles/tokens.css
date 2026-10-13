@@ -1,0 +1,109 @@
+/**
+ * 温暖宠物风 · 色彩方案（严格来自《色彩搭配方案.md》）
+ * 所有颜色统一收敛为 CSS 变量，三端（用户/服务人员/管理后台）通过主题类切换主色：
+ *   .theme-portal  -> 暖橙 #FF8A3D（下单/价格/主行动点）
+ *   .theme-staff   -> 活力绿 #4ECB71（接单/服务中/收益）
+ *   .theme-admin   -> 信任蓝 #5B7FFF（看板/表格/审核/配置）
+ *
+ * 色阶生成规则（Element Plus 同款 mix 法）：
+ *   light-N = mix(基础色, #FFFFFF, N%)   深色文字/边框上浮用浅色
+ *   dark-2  = mix(基础色, #000000, 20%)  悬浮/按下态
+ * 例：#FF8A3D light-3=#FFAD77 light-5=#FFC59E light-7=#FFDCC5 light-9=#FFF3EC dark-2=#CC6E31
+ */
+:root {
+  /* ===== 主色板 ===== */
+  --color-primary: #ff8a3d;        /* 主色 · 暖橙 */
+  --color-secondary: #4ecb71;      /* 辅色 · 活力绿 */
+  --color-accent: #5b7fff;         /* 强调色 · 信任蓝 */
+
+  /* ===== 状态色 ===== */
+  --color-success: #4ecb71;        /* 成功：支付成功/服务完成/接单成功 */
+  --color-warning: #ffb020;        /* 警告：待支付/待接单/即将超时 */
+  --color-danger: #ff4d4f;         /* 错误：取消/失败/退款异常 */
+  --color-info: #5b7fff;           /* 进行中：服务中/处理中/审核中 */
+  --color-disabled: #bfbfbf;       /* 禁用：不可点击/不可选 */
+  --color-unread: #ff4d4f;         /* 未读：消息红点/订单提醒 */
+
+  /* ===== 背景与卡片 ===== */
+  --color-bg-page: #f7f8fa;
+  --color-bg-card: #ffffff;
+
+  /* ===== 文字 ===== */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;     /* 弱化：时间/备注/占位符 */
+  --color-text-white: #ffffff;
+
+  /* ===== 边框与分割线 ===== */
+  --color-border: #ebedf0;
+  --color-border-input: #dcdEe0;
+  --color-placeholder: #c0c4cc;
+
+  /* ===== 主色阶（mix 白色生成） ===== */
+  --color-primary-light-3: #ffad77;
+  --color-primary-light-5: #ffc59e;
+  --color-primary-light-7: #ffdcc5;
+  --color-primary-light-9: #fff3ec;
+  --color-primary-dark-2: #cc6e31;
+
+  --color-success-light-3: #83db9c;
+  --color-success-light-9: #edfaf1;
+  --color-danger-light-3: #ff8284;
+  --color-danger-light-9: #ffeded;
+  --color-warning-light-3: #ffc863;
+  --color-warning-light-9: #fff7e9;
+  --color-info-light-3: #8ca5ff;
+  --color-info-light-9: #eff2ff;
+  --color-info-dark-2: #4966cc;
+
+  /* ===== 圆角与阴影 ===== */
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  --radius-tag: 6px;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* ===== 字号 ===== */
+  --font-size-title: 20px;      /* 大标题 600 */
+  --font-size-module: 18px;     /* 模块标题 600 */
+  --font-size-body: 15px;       /* 正文 400 */
+  --font-size-aux: 13px;        /* 辅助文字 400 */
+  --font-size-price: 18px;
+  --font-size-price-lg: 22px;
+
+  /* ===== 标签 ===== */
+  --tag-bg: #fff3ec;
+  --tag-text: #ff8a3d;
+}
+
+/* ===== 三端主题切换：仅覆盖 Element Plus 主色及色阶 =====
+ * 主题类由路由守卫挂到 <html> 上（而非布局容器），这样 teleport 到 body 的
+ * 下拉/对话框/抽屉也能继承当端主色。
+ * 选择器写成 html.theme-* 是为了拿到 (0,1,1) 特异度，
+ * 稳压 element-theme.css 中 :root (0,1,0) 的同名变量，避免被反向覆盖。
+ */
+html.theme-admin {
+  --el-color-primary: #5b7fff;
+  --el-color-primary-light-3: #8ca5ff;
+  --el-color-primary-light-5: #aebdff;
+  --el-color-primary-light-7: #ced7ff;
+  --el-color-primary-light-9: #eff2ff;
+  --el-color-primary-dark-2: #4966cc;
+}
+
+html.theme-staff {
+  --el-color-primary: #4ecb71;
+  --el-color-primary-light-3: #83db9c;
+  --el-color-primary-light-5: #a5e5bc;
+  --el-color-primary-light-7: #c7efd9;
+  --el-color-primary-light-9: #edfaf1;
+  --el-color-primary-dark-2: #3eba5b;
+}
+
+html.theme-portal {
+  --el-color-primary: #ff8a3d;
+  --el-color-primary-light-3: #ffad77;
+  --el-color-primary-light-5: #ffc59e;
+  --el-color-primary-light-7: #ffdcc5;
+  --el-color-primary-light-9: #fff3ec;
+  --el-color-primary-dark-2: #cc6e31;
+}
